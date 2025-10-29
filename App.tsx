@@ -107,7 +107,7 @@ const App: React.FC = () => {
     if (walletKey) {
       return (
         <div className="flex flex-col items-center space-y-4 w-full">
-          <p className="text-sm text-gray-400">Connected with:</p>
+          
           <div className="bg-gray-900 px-4 py-2 rounded-lg text-lg text-purple-400 font-mono break-all w-full text-center">
             {`${walletKey.substring(0, 4)}...${walletKey.substring(walletKey.length - 4)}`}
           </div>
@@ -124,9 +124,8 @@ const App: React.FC = () => {
     return (
       <button
         onClick={connectWallet}
-        className="bg-purple-600 hover:bg-purple-700 text-white font-bold py-4 px-8 rounded-lg transition-all duration-300 ease-in-out transform hover:scale-105 flex items-center justify-center space-x-3 shadow-lg text-xl"
-      >
-        <PhantomIcon className="w-3 h-3" />
+        className="bg-purple-400 hover:bg-purple-450 text-white font-bold py-3 px-6 rounded-lg transition-all duration-300 ease-in-out transform hover:scale-105 flex items-center justify-center space-x-1 shadow-lg text-xl">
+        <PhantomIcon className="w-7 h-7" />
         <span>Connect Phantom Wallet</span>
       </button>
     );
