@@ -135,7 +135,7 @@ const App: React.FC = () => {
     // This component is self-contained. The host page can control its positioning.
     // The `p-4` and `font-sans` provide some basic styling.
     <div className="font-sans p-4">
-      <div>
+      <div className="bg-gray-800 p-8 rounded-2xl shadow-2xl border border-gray-700 w-full max-w-sm mx-auto flex flex-col items-center">
        
        
         <div className="w-full flex justify-center">
