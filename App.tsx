@@ -108,7 +108,7 @@ const App: React.FC = () => {
       return (
         <div className="flex flex-col items-center space-y-4 w-full">
           
-          <div className="text-center">
+          <div className="text-center text-white">
             {`${walletKey.substring(0, 4)}...${walletKey.substring(walletKey.length - 4)}`}
           </div>
           <button
