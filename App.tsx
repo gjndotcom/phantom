@@ -108,7 +108,7 @@ const App: React.FC = () => {
       return (
         <div className="flex flex-col items-center space-y-4 w-full">
           
-          <div>
+          <div className="bg-gray-900 px-4 py-2 rounded-lg text-lg text-purple-400 font-mono break-all w-full text-center">
             {`${walletKey.substring(0, 4)}...${walletKey.substring(walletKey.length - 4)}`}
           </div>
           <button
@@ -135,7 +135,7 @@ const App: React.FC = () => {
     // This component is self-contained. The host page can control its positioning.
     // The `p-4` and `font-sans` provide some basic styling.
     <div className="font-sans p-4">
-      <div className="bg-gray-800 p-8 rounded-2xl shadow-2xl border border-gray-700 w-full max-w-sm mx-auto flex flex-col items-center">
+      <div>
        
        
         <div className="w-full flex justify-center">
