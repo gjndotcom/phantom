@@ -137,8 +137,8 @@ const App: React.FC = () => {
     // The `p-4` and `font-sans` provide some basic styling.
     <div className="font-sans p-4">
       <div className="bg-gray-800 p-8 rounded-2xl shadow-2xl border border-gray-700 w-full max-w-sm mx-auto flex flex-col items-center">
-        <h1 className="text-3xl font-bold mb-2 text-center text-purple-400">Wallet Connector</h1>
-        <p className="text-center text-gray-400 mb-8">Connect your Phantom wallet to get started.</p>
+       
+       
         <div className="w-full flex justify-center">
           {renderContent()}
         </div>
