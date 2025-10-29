@@ -1,0 +1,5 @@
+{
+  "name": "Phantom Wallet Connector",
+  "description": "A simple and embeddable React component to connect to the Phantom wallet on the Solana blockchain.",
+  "requestFramePermissions": []
+}
