@@ -1,24 +1,867 @@
-
 <!DOCTYPE html>
-<html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Phantom Wallet Connector</title>
-    <script src="https://cdn.tailwindcss.com"></script>
-  <script type="importmap">
-{
-  "imports": {
-    "react/": "https://aistudiocdn.com/react@^19.2.0/",
-    "react": "https://aistudiocdn.com/react@^19.2.0",
-    "react-dom/": "https://aistudiocdn.com/react-dom@^19.2.0/"
-  }
-}
-</script>
-<link rel="stylesheet" href="/index.css">
+<html lang="vi">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Nhà Nghỉ Cozy Stay</title>
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Be+Vietnam+Pro:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+
+  <style>
+    *{
+      margin:0;
+      padding:0;
+      box-sizing:border-box;
+      scroll-behavior:smooth;
+    }
+
+    body{
+      font-family:'Be Vietnam Pro', sans-serif;
+      background:#f8f6f2;
+      color:#333;
+      overflow-x:hidden;
+    }
+
+    img{
+      width:100%;
+      display:block;
+    }
+
+    a{
+      text-decoration:none;
+      color:inherit;
+    }
+
+    .container{
+      width:90%;
+      max-width:1200px;
+      margin:auto;
+    }
+
+    section{
+      padding:90px 0;
+    }
+
+    /* NAVBAR */
+
+    header{
+      position:fixed;
+      top:0;
+      left:0;
+      width:100%;
+      z-index:999;
+      transition:0.3s;
+      background:rgba(255,255,255,0.75);
+      backdrop-filter:blur(12px);
+      box-shadow:0 2px 10px rgba(0,0,0,0.05);
+    }
+
+    .navbar{
+      display:flex;
+      justify-content:space-between;
+      align-items:center;
+      padding:18px 0;
+    }
+
+    .logo{
+      font-size:28px;
+      font-weight:700;
+      color:#7a5c3e;
+    }
+
+    .nav-links{
+      display:flex;
+      gap:28px;
+      align-items:center;
+    }
+
+    .nav-links a{
+      font-weight:500;
+      transition:0.3s;
+    }
+
+    .nav-links a:hover{
+      color:#a47a4d;
+    }
+
+    .menu-btn{
+      display:none;
+      font-size:28px;
+      cursor:pointer;
+    }
+
+    /* HERO */
+
+    .hero{
+      min-height:100vh;
+      background:
+      linear-gradient(rgba(0,0,0,0.45), rgba(0,0,0,0.45)),
+      url('https://i.ibb.co/cKd11VsF/z7800883460919-4d6b843c71058814c903bd4a3de6df2e.jpg?q=80&w=1400&auto=format&fit=crop');
+      background-size:cover;
+      background-position:center;
+      display:flex;
+      align-items:center;
+      color:white;
+      position:relative;
+    }
+
+    .hero-content{
+      max-width:650px;
+    }
+
+    .hero h1{
+      font-size:62px;
+      line-height:1.2;
+      margin-bottom:20px;
+    }
+
+    .hero p{
+      font-size:18px;
+      line-height:1.8;
+      margin-bottom:35px;
+      color:#f1f1f1;
+    }
+
+    .hero-buttons{
+      display:flex;
+      gap:18px;
+      flex-wrap:wrap;
+    }
+
+    .btn{
+      padding:15px 30px;
+      border-radius:50px;
+      font-weight:600;
+      transition:0.3s;
+      display:inline-block;
+    }
+
+    .btn-primary{
+      background:#b78a5f;
+      color:white;
+    }
+
+    .btn-primary:hover{
+      background:#9f754d;
+      transform:translateY(-3px);
+    }
+
+    .btn-outline{
+      border:2px solid white;
+      color:white;
+    }
+
+    .btn-outline:hover{
+      background:white;
+      color:#333;
+    }
+
+    /* BOOKING CARD */
+
+    .booking-card{
+      position:absolute;
+      right:8%;
+      bottom:60px;
+      background:rgba(255,255,255,0.2);
+      backdrop-filter:blur(15px);
+      padding:30px;
+      border-radius:24px;
+      width:320px;
+      box-shadow:0 10px 30px rgba(0,0,0,0.15);
+    }
+
+    .booking-card h3{
+      margin-bottom:20px;
+      color:white;
+    }
+
+    .booking-card input,
+    .booking-card select{
+      width:100%;
+      padding:14px;
+      margin-bottom:14px;
+      border:none;
+      border-radius:12px;
+      outline:none;
+    }
+
+    /* SECTION TITLE */
+
+    .section-title{
+      text-align:center;
+      margin-bottom:60px;
+    }
+
+    .section-title h2{
+      font-size:42px;
+      color:#6d5135;
+      margin-bottom:12px;
+    }
+
+    .section-title p{
+      color:#777;
+      max-width:700px;
+      margin:auto;
+      line-height:1.7;
+    }
+
+    /* ABOUT */
+
+    .about-grid{
+      display:grid;
+      grid-template-columns:1fr 1fr;
+      gap:50px;
+      align-items:center;
+    }
+
+    .about-img img{
+      border-radius:28px;
+      box-shadow:0 15px 40px rgba(0,0,0,0.12);
+    }
+
+    .about-content h3{
+      font-size:34px;
+      margin-bottom:20px;
+      color:#6d5135;
+    }
+
+    .about-content p{
+      line-height:1.9;
+      color:#666;
+      margin-bottom:20px;
+    }
+
+    .features{
+      display:grid;
+      grid-template-columns:1fr 1fr;
+      gap:15px;
+      margin-top:25px;
+    }
+
+    .feature-box{
+      background:white;
+      padding:18px;
+      border-radius:16px;
+      box-shadow:0 5px 15px rgba(0,0,0,0.05);
+      font-weight:500;
+    }
+
+    /* ROOMS */
+
+    .room-grid{
+      display:grid;
+      grid-template-columns:repeat(auto-fit,minmax(280px,1fr));
+      gap:30px;
+    }
+
+    .room-card{
+      background:white;
+      border-radius:24px;
+      overflow:hidden;
+      transition:0.4s;
+      box-shadow:0 8px 20px rgba(0,0,0,0.05);
+    }
+
+    .room-card:hover{
+      transform:translateY(-10px);
+    }
+
+    .room-info{
+      padding:25px;
+    }
+
+    .room-info h3{
+      margin-bottom:10px;
+      color:#6d5135;
+    }
+
+    .price{
+      color:#b78a5f;
+      font-weight:700;
+      margin-bottom:14px;
+      display:block;
+    }
+
+    .room-info p{
+      color:#777;
+      line-height:1.7;
+    }
+
+    /* AMENITIES */
+
+    .amenities-grid{
+      display:grid;
+      grid-template-columns:repeat(auto-fit,minmax(180px,1fr));
+      gap:25px;
+    }
+
+    .amenity-card{
+      background:white;
+      padding:35px 20px;
+      text-align:center;
+      border-radius:22px;
+      box-shadow:0 8px 20px rgba(0,0,0,0.05);
+      transition:0.3s;
+    }
+
+    .amenity-card:hover{
+      transform:translateY(-8px);
+    }
+
+    .amenity-icon{
+      font-size:42px;
+      margin-bottom:16px;
+    }
+
+    /* GALLERY */
+
+    .gallery{
+      columns:3 250px;
+      gap:16px;
+    }
+
+    .gallery img{
+      margin-bottom:16px;
+      border-radius:20px;
+      transition:0.4s;
+    }
+
+    .gallery img:hover{
+      transform:scale(1.03);
+    }
+
+    /* TESTIMONIAL */
+
+    .testimonial-grid{
+      display:grid;
+      grid-template-columns:repeat(auto-fit,minmax(280px,1fr));
+      gap:30px;
+    }
+
+    .testimonial{
+      background:white;
+      padding:30px;
+      border-radius:22px;
+      box-shadow:0 8px 20px rgba(0,0,0,0.05);
+    }
+
+    .testimonial p{
+      color:#666;
+      line-height:1.8;
+      margin-bottom:20px;
+    }
+
+    .user{
+      display:flex;
+      align-items:center;
+      gap:14px;
+    }
+
+    .user img{
+      width:60px;
+      height:60px;
+      border-radius:50%;
+      object-fit:cover;
+    }
+
+    /* CTA */
+
+    .cta{
+      background:
+      linear-gradient(rgba(0,0,0,0.5), rgba(0,0,0,0.5)),
+      url('https://images.unsplash.com/photo-1505693416388-ac5ce068fe85?q=80&w=1400&auto=format&fit=crop');
+      background-size:cover;
+      background-position:center;
+      border-radius:30px;
+      padding:80px 40px;
+      text-align:center;
+      color:white;
+    }
+
+    .cta h2{
+      font-size:48px;
+      margin-bottom:20px;
+    }
+
+    .cta p{
+      max-width:700px;
+      margin:auto;
+      line-height:1.8;
+      margin-bottom:30px;
+    }
+
+    /* FOOTER */
+
+    footer{
+      background:#2f241b;
+      color:white;
+      padding:70px 0 30px;
+      margin-top:100px;
+    }
+
+    .footer-grid{
+      display:grid;
+      grid-template-columns:repeat(auto-fit,minmax(250px,1fr));
+      gap:40px;
+      margin-bottom:40px;
+    }
+
+    .footer-col h3{
+      margin-bottom:20px;
+    }
+
+    .footer-col p,
+    .footer-col a{
+      color:#ddd;
+      line-height:2;
+    }
+
+    .copyright{
+      text-align:center;
+      border-top:1px solid rgba(255,255,255,0.1);
+      padding-top:20px;
+      color:#bbb;
+    }
+
+    /* ANIMATION */
+
+    .fade-up{
+      opacity:0;
+      transform:translateY(40px);
+      transition:1s;
+    }
+
+    .fade-up.active{
+      opacity:1;
+      transform:translateY(0);
+    }
+
+    /* RESPONSIVE */
+
+    @media(max-width:992px){
+
+      .hero h1{
+        font-size:48px;
+      }
+
+      .booking-card{
+        position:relative;
+        right:auto;
+        bottom:auto;
+        margin-top:40px;
+        width:100%;
+      }
+
+      .about-grid{
+        grid-template-columns:1fr;
+      }
+    }
+
+    @media(max-width:768px){
+
+      .menu-btn{
+        display:block;
+      }
+
+      .nav-links{
+        position:absolute;
+        top:80px;
+        right:-100%;
+        background:white;
+        width:260px;
+        flex-direction:column;
+        padding:30px;
+        transition:0.4s;
+        border-radius:20px;
+        box-shadow:0 10px 30px rgba(0,0,0,0.1);
+      }
+
+      .nav-links.active{
+        right:20px;
+      }
+
+      .hero h1{
+        font-size:40px;
+      }
+
+      .section-title h2{
+        font-size:34px;
+      }
+
+      .cta h2{
+        font-size:36px;
+      }
+    }
+  </style>
 </head>
-  <body>
-    <div id="root"></div>
-    <script type="module" src="/index.tsx"></script>
-  </body>
+<body>
+
+  <!-- HEADER -->
+  <header>
+    <div class="container navbar">
+      <div class="logo">Mai Anh Đào Hotel</div>
+
+      <div class="nav-links" id="navLinks">
+        <a href="#about">Giới Thiệu</a>
+        <a href="#rooms">Phòng</a>
+        <a href="#gallery">Thư Viện</a>
+        <a href="#reviews">Đánh Giá</a>
+        <a href="#contact">Liên Hệ</a>
+      </div>
+
+      <div class="menu-btn" id="menuBtn">☰</div>
+    </div>
+  </header>
+
+  <!-- HERO -->
+  <section class="hero">
+    <div class="container">
+      <div class="hero-content fade-up">
+        <h1>Không Gian Nghỉ Dưỡng Thoải Mái & Ấm Cúng</h1>
+
+        <p>
+          Trải nghiệm không gian nghỉ dưỡng hiện đại, sạch sẽ và yên bình.
+          Mai Anh Đào Hotel mang đến cảm giác thư giãn như ở nhà với dịch vụ tận tâm.
+        </p>
+
+        <div class="hero-buttons">
+		
+		
+          <a href="tel:0908681768" class="btn btn-primary">📞 0908.681.768</a>
+          <a href="#rooms" class="btn btn-outline">Xem Phòng</a>
+        </div>
+      </div>
+
+     
+    </div>
+  </section>
+
+  <!-- ABOUT -->
+  <section id="about">
+    <div class="container">
+      <div class="section-title fade-up">
+        <h2>Mai Anh Đào Hotel</h2>
+        <p>
+          Không gian nghỉ dưỡng thân thiện, hiện đại với đầy đủ tiện nghi
+          dành cho chuyến đi thư giãn của bạn.
+        </p>
+      </div>
+
+      <div class="about-grid">
+        <div class="about-img fade-up">
+          <img src="https://i.ibb.co/Pz36cVmm/z7800882619802-f880de4d7c7a1a4918b8f610e6dc05e6.jpg?q=80&w=1200&auto=format&fit=crop">
+        </div>
+
+        <div class="about-content fade-up">
+          <h3>Không gian yên bình & tiện nghi</h3>
+
+          <p>
+            Chúng tôi cung cấp phòng nghỉ sạch sẽ, đầy đủ tiện nghi,
+            vị trí thuận tiện và mức giá hợp lý dành cho du khách.
+          </p>
+
+          <div class="features">
+            <div class="feature-box">✔ Phòng sạch sẽ</div>
+            <div class="feature-box">✔ Giá hợp lý</div>
+            <div class="feature-box">✔ Không gian yên tĩnh</div>
+            <div class="feature-box">✔ Hỗ trợ 24/7</div>
+			<div class="feature-box">✔ Nước nóng miễn phí</div>
+			<div class="feature-box">✔ Bãi đỗ xe rộng rãi</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ROOMS -->
+  <section id="rooms">
+    <div class="container">
+      <div class="section-title fade-up">
+        <h2>Phòng Nghỉ</h2>
+      </div>
+
+      <div class="room-grid">
+
+        <div class="room-card fade-up">
+          <img src="https://images.unsplash.com/photo-1505693416388-ac5ce068fe85?q=80&w=1200&auto=format&fit=crop">
+
+          <div class="room-info">
+            <h3>Phòng Deluxe</h3>
+            <span class="price">650.000đ / đêm</span>
+            <p>Không gian hiện đại, giường lớn, đầy đủ tiện nghi cao cấp.</p>
+          </div>
+        </div>
+
+        <div class="room-card fade-up">
+          <img src="https://images.unsplash.com/photo-1566665797739-1674de7a421a?q=80&w=1200&auto=format&fit=crop">
+
+          <div class="room-info">
+            <h3>Phòng Standard</h3>
+            <span class="price">450.000đ / đêm</span>
+            <p>Thiết kế tối giản, sạch sẽ, phù hợp nghỉ dưỡng ngắn ngày.</p>
+          </div>
+        </div>
+
+        <div class="room-card fade-up">
+          <img src="https://images.unsplash.com/photo-1551882547-ff40c63fe5fa?q=80&w=1200&auto=format&fit=crop">
+
+          <div class="room-info">
+            <h3>Phòng Family</h3>
+            <span class="price">850.000đ / đêm</span>
+            <p>Không gian rộng rãi cho gia đình hoặc nhóm bạn.</p>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- AMENITIES -->
+  <section>
+    <div class="container">
+
+      <div class="section-title fade-up">
+        <h2>Tiện Nghi</h2>
+      </div>
+
+      <div class="amenities-grid">
+
+        <div class="amenity-card fade-up">
+          <div class="amenity-icon">📶</div>
+          <h3>Wifi Free</h3>
+        </div>
+
+        <div class="amenity-card fade-up">
+          <div class="amenity-icon">❄️</div>
+          <h3>Nước Nóng</h3>
+        </div>
+
+        <div class="amenity-card fade-up">
+          <div class="amenity-icon">🚗</div>
+          <h3>Bãi Đỗ Xe</h3>
+        </div>
+
+        <div class="amenity-card fade-up">
+          <div class="amenity-icon">📺</div>
+          <h3>Smart TV</h3>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- GALLERY -->
+  <section id="gallery">
+  
+	<div class="container">
+
+      <div class="section-title fade-up">
+        <h2>Thư Viện Ảnh</h2>
+      </div>
+
+      <div class="gallery fade-up">
+        <img src="https://i.ibb.co/gb8B9pCq/z7800883952519-2c0f0bc69fc0110280b4f36022331307.jpg?q=80&w=1200&auto=format&fit=crop">
+        <img src="https://images.unsplash.com/photo-1505693416388-ac5ce068fe85?q=80&w=1200&auto=format&fit=crop">
+        <img src="https://images.unsplash.com/photo-1551882547-ff40c63fe5fa?q=80&w=1200&auto=format&fit=crop">
+        <img src="https://images.unsplash.com/photo-1566665797739-1674de7a421a?q=80&w=1200&auto=format&fit=crop">
+        <img src="https://images.unsplash.com/photo-1522708323590-d24dbb6b0267?q=80&w=1200&auto=format&fit=crop">
+      </div>
+
+    </div>
+  </section>
+
+  <!-- TESTIMONIAL -->
+  <section id="reviews">
+    <div class="container">
+
+      <div class="section-title fade-up">
+        <h2>Khách Hàng Nói Gì?</h2>
+      </div>
+
+      <div class="testimonial-grid">
+
+        <div class="testimonial fade-up">
+          <p>
+            “Đi chơi mệt mà về khách sạn thấy dễ chịu hẳn luôn. Giường êm, nước nóng, wifi mạnh, nhân viên thì cực kỳ nhiệt tình.”
+          </p>
+
+          <div class="user">
+            <img src="https://i.pinimg.com/1200x/eb/a8/61/eba8616f5d0de2fbb37e6cc79c31ba3a.jpg">
+            <div>
+              <h4>Ngọc Anh</h4>
+              ⭐⭐⭐⭐⭐
+            </div>
+          </div>
+        </div>
+		
+		<div class="testimonial fade-up">
+          <p>
+            “Khách sạn gì đâu mà xịn hơn tưởng tượng luôn. Giá ổn mà dịch vụ quá trời ổn áp, lần sau lên đây chắc chắn đặt tiếp.”
+          </p>
+
+          <div class="user">
+            <img src="https://i.pinimg.com/474x/79/01/42/7901423db25d5234ab180ad0b52552fc.jpg">
+            <div>
+              <h4>Cẩm Tú</h4>
+              ⭐⭐⭐⭐⭐
+            </div>
+          </div>
+        </div>
+		
+		<div class="testimonial fade-up">
+          <p>
+            “Mình khó tính vụ sạch sẽ lắm mà chỗ này làm mình ưng thiệt sự. Chăn gối thơm phức, ngủ ngon khỏi chê.”
+          </p>
+
+          <div class="user">
+            <img src="https://i.pinimg.com/1200x/f1/76/73/f17673ba06105e432cc281aaaf4a6db9.jpg">
+            <div>
+              <h4>Mai Anh</h4>
+              ⭐⭐⭐⭐⭐
+            </div>
+          </div>
+        </div>
+		
+		<div class="testimonial fade-up">
+          <p>
+            “Đi du lịch mà gặp được khách sạn có tâm như vầy thấy vui ghê. Nhân viên hỗ trợ nhiệt tình từ lúc check-in tới lúc về luôn..”
+          </p>
+
+          <div class="user">
+            <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRmzPPB0qPTBYQLz4MDHqXRx5XkKkfrZAnPTw&s">
+            <div>
+              <h4>Hà Phương</h4>
+              ⭐⭐⭐⭐⭐
+            </div>
+          </div>
+        </div>
+		
+		<div class="testimonial fade-up">
+          <p>
+            “Mình thích nhất là cái cảm giác bước vô khách sạn thấy thơm với sạch liền. Nhìn cái là biết chăm chút kỹ lắm."
+          </p>
+
+          <div class="user">
+            <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRnQmjn488F9yTBSoujAdbhxjKcw2dvL_23CQ&s">
+            <div>
+              <h4>Vân Anh</h4>
+              ⭐⭐⭐⭐⭐
+            </div>
+          </div>
+        </div>
+		
+        <div class="testimonial fade-up">
+          <p>
+            “Thiệt chứ hiếm chỗ nào vừa đẹp vừa phục vụ có tâm như vậy. Có dịp quay lại mình vẫn chọn chỗ này đầu tiên.”
+          </p>
+
+          <div class="user">
+            <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRI5n1QtE8jZoAUmkkomWBe1Lbq6WJDNF5hJQ&s">
+            <div>
+              <h4>Mai Phương</h4>
+              ⭐⭐⭐⭐⭐
+            </div>
+          </div>
+        </div>
+
+      </div>
+
+    </div>
+  </section>
+
+  <!-- CTA -->
+  <section>
+    <div class="container">
+
+      <div class="cta fade-up">
+        <h2>Đặt Phòng Ngay Hôm Nay</h2>
+
+        <p>
+          Hãy tận hưởng không gian nghỉ dưỡng thoải mái,
+          ấm cúng và chuyên nghiệp cùng CozyStay.
+        </p>
+
+        <a href="#" class="btn btn-primary">
+          Liên Hệ Đặt Phòng
+        </a>
+      </div>
+
+    </div>
+	  
+	
+  </section>
+<div align="center" class="container">
+	<iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d11047.047778465763!2d108.24979420641306!3d11.784670342921563!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x317143cef1175f3d%3A0xd55854d0d0f17f27!2zTWFpIEFuaCDEkMOgbyBtb3RlbA!5e0!3m2!1svi!2s!4v1778517224741!5m2!1svi!2s" align="center" width="800" height="400" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
+	</div>
+  <!-- FOOTER -->
+  <footer id="contact">
+    <div class="container">
+		
+      <div class="footer-grid">
+
+        <div class="footer-col">
+          <h3>Mai Anh Đào Hotel</h3>
+          <p>
+            Không gian nghỉ dưỡng hiện đại và thân thiện
+            dành cho mọi chuyến đi của bạn.
+          </p>
+        </div>
+
+        <div class="footer-col">
+          <h3>Liên Kết</h3>
+          <a href="#">Trang Chủ</a><br>
+          <a href="#">Phòng</a><br>
+          <a href="#">Đánh Giá</a>
+        </div>
+
+        <div class="footer-col">
+          <h3>Liên Hệ</h3>
+          <a  href="https://maps.app.goo.gl/27Dj1MRkJ4QMd2HD6" target="_blank" ><p>📍 99 quảng đức, Đinh Văn, Lâm Đồng, Việt Nam</p></a>
+          <p>📞 <a href="tel:0908681768">0908.681.768</a></p>
+          <p>✉ FB: Hotel Mai Anh Đào</p>
+        </div>
+
+      </div>
+
+      <div class="copyright">
+        © 2026 Hotel Mai Anh Đào. All Rights Reserved.
+      </div>
+
+    </div>
+  </footer>
+
+  <script>
+
+    // MOBILE MENU
+
+    const menuBtn = document.getElementById("menuBtn");
+    const navLinks = document.getElementById("navLinks");
+
+    menuBtn.onclick = () => {
+      navLinks.classList.toggle("active");
+    };
+
+    // SCROLL ANIMATION
+
+    const fadeElements = document.querySelectorAll(".fade-up");
+
+    const observer = new IntersectionObserver((entries)=>{
+      entries.forEach((entry)=>{
+        if(entry.isIntersecting){
+          entry.target.classList.add("active");
+        }
+      });
+    }, {
+      threshold:0.2
+    });
+
+    fadeElements.forEach((el)=>{
+      observer.observe(el);
+    });
+
+  </script>
+
+</body>
 </html>
